@@ -9,8 +9,10 @@ import { MemoryVectorStore } from 'langchain/vectorstores/memory'
 import z from 'zod'
 
 // the sentiment analysis section
-// build parser that takes in a zod object
-// the schema
+// build parser that takes in a zod object, the schema
+// the use of langchain StructuredOutputParser allows for a simplified tempalte below
+// and is good for our use case as it allows for passing of structured data
+// from getPrompt to the analyze function
 const parser = StructuredOutputParser.fromZodSchema(
   z.object({
     sentimentScore: z
@@ -26,7 +28,9 @@ const parser = StructuredOutputParser.fromZodSchema(
     summary: z
       .string()
       .describe('Two word summary of the entire coffee bean roast entry.'),
-    subject: z.string().describe('The subject of the coffee bean roast entry.'),
+    subject: z
+      .string()
+      .describe('The name of the coffee bean that was roasted.'),
     negative: z
       .boolean()
       .describe(
@@ -40,12 +44,14 @@ const parser = StructuredOutputParser.fromZodSchema(
   })
 )
 
+// prompt engineering
 const getPrompt = async (content) => {
   const format_instructions = parser.getFormatInstructions()
 
   const prompt = new PromptTemplate({
+    // steering instructions
     template:
-      'Analyze the following coffee roast entry. Follow the instructions and format your response to match the format instructions, no matter what! \n{format_instructions}\n{entry}',
+      'Analyze the following coffee bean roast entry. Follow the instructions and format your response to match the format instructions, no matter what! \n{format_instructions}\n{entry}',
     inputVariables: ['entry'],
     partialVariables: { format_instructions },
   })
@@ -59,9 +65,10 @@ const getPrompt = async (content) => {
 }
 
 export const analyze = async (content) => {
+  // pass in the results of parser and getPrompt
   const input = await getPrompt(content)
-  // temperature is a setting for a completion
-  // and describes the variance of outcomes
+  // temperature is a setting (for a completion) which describes the variance of outcomes
+  // set at 0 to reduce hallucination for deterministic outcome
   const model = new OpenAI({ temperature: 0, modelName: 'gpt-3.5-turbo' })
 
   // make the completion
@@ -78,7 +85,7 @@ export const analyze = async (content) => {
 
 // the search section = question and answer
 // how to feed llm to answer the search input question?
-
+// given token limitations
 export const qa = async (question, entries) => {
   // turn all entries into a langchain doc with map
   const docs = entries.map((entry) => {
@@ -93,7 +100,9 @@ export const qa = async (question, entries) => {
   // chain multiple llm calls together
   // loadQARefinedChain iterates over docs updating the previous answer
   const chain = loadQARefineChain(model)
+  // const to handle the converstion of text to numerical vectors
   const embeddings = new OpenAIEmbeddings()
+  // implementing a vector store
   const store = await MemoryVectorStore.fromDocuments(docs, embeddings)
   // get the refined set of entries to answer the question
   const relevantDocs = await store.similaritySearch(question)

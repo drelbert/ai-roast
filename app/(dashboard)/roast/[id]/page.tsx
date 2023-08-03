@@ -39,7 +39,6 @@ const RoastEntryPage = async ({ params }) => {
   return (
     <div className="w-full h-full">
       {/* passing props to the client component from this server component */}
-
       <RoastEditor entry={entry} />
     </div>
   )

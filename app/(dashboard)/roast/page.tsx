@@ -8,6 +8,7 @@ import Link from 'next/link'
 const getEntries = async () => {
   const user = await getUserByClerkID()
   const entries = await prisma.roastEntry.findMany({
+    // model query options
     where: {
       userId: user.id,
     },
@@ -27,21 +28,25 @@ const RoastPage = async () => {
   console.log(`entries are`, entries)
 
   return (
-    <div>
-      <div className="p-10 bg-zinc-400/10 h-full">
-        <h2 className="text-3xl mb-8">Roasts</h2>
-        <div className="my-8">
+    <div className="h-full  text-sky-400">
+      <div>
+        <h2 className="text-3xl">Roasts</h2>
+        <div className="p-4 bg-slate-400/10 h-full rounded-xl m-4">
           <SearchInput />
         </div>
-        <div className="grid grid-cols-3 gap-4 ">
+
+        <div className="gap-2 p-8 bg-slate-400/10 h-full rounded-xl m-4">
           <div>
             <NewEntryCard />
           </div>
-          {entries.map((entry) => (
-            <Link href={`/roast/${entry.id}`} key={entry.id}>
-              <EntryCard entry={entry} />
-            </Link>
-          ))}
+
+          <div className="text-white">
+            {entries.map((entry) => (
+              <Link href={`/roast/${entry.id}`} key={entry.id}>
+                <EntryCard entry={entry} />
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </div>

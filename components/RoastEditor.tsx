@@ -58,22 +58,26 @@ const RoastEditor = ({ entry }) => {
   })
 
   return (
-    <div className="w-full h-96 grid grid-cols-3">
-      <div className="col-span-2">
+    <div className="w-full h-96 grid md:grid-cols-3">
+      <div className="col-span-2 m-2">
         {isLoading && <div>...Loading</div>}
         <textarea
-          className="w-full h-full p-8 text-lg border-4 outline-black"
+          className="w-full h-full p-8 text-lg text-white rounded-md bg-slate-700"
           value={value}
           onChange={(e) => setValue(e.target.value)}
           name="roast"
         />
       </div>
 
-      <div className="border-2 border-black/10">
-        <div className=" px-6 py-10" style={{ backgroundColor: color }}>
-          <h2 className="text-2xl">Sentiment</h2>
+      <div className="md:cols-span-2">
+        <div
+          className="px-6 py-8 rounded-md m-2"
+          style={{ backgroundColor: color }}
+        >
+          <h2 className="text-2xl text-white">Sentiment</h2>
         </div>
-        <div>
+
+        <div className="rounded-md m-2 text-white bg-slate-700">
           <ul>
             {roastData.map((e) => (
               <li

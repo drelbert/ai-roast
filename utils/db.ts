@@ -5,7 +5,10 @@ const globalForPrisma = globalThis as unknown as {
 }
 
 export const prisma =
+  // is prisma present?
   globalForPrisma.prisma ??
+  // then create new instance of the client = new db connection
+  // should be limited
   new PrismaClient({
     log: ['query'],
   })

@@ -1,15 +1,17 @@
 import { analyze } from '@/utils/ai'
 import { getUserByClerkID } from '@/utils/auth'
 import { prisma } from '@/utils/db'
+import { NextResponse, NextRequest } from 'next/server'
 import { revalidatePath } from 'next/cache'
-import { NextResponse } from 'next/server'
 
-export const POST = async () => {
+export const POST = async (request: NextRequest) => {
   const user = await getUserByClerkID()
   const entry = await prisma.roastEntry.create({
     data: {
       userId: user.id,
-      content: 'Enter Roast Details',
+      content:
+        'Enter roast details such as bean name, roast time, roast profile and any other relevant data. ',
+      analysis: {},
     },
   })
 
@@ -21,13 +23,14 @@ export const POST = async () => {
     data: {
       userId: user.id,
       entryId: entry.id,
-      // spread operator
+      // spread operator to map the whole object
       ...analysis,
     },
   })
 
   // deal with refreshing the current roasts
-  revalidatePath('/roast')
+  const path = request.nextUrl.searchParams.get('path') || '/roast'
+  revalidatePath(path)
 
-  return NextResponse.json({ data: entry })
+  return NextResponse.json({ data: entry, revalidated: true })
 }

@@ -20,6 +20,7 @@ const getData = async () => {
 
 const History = async () => {
   const { avg, analysis } = await getData()
+
   console.log(analysis)
 
   return (

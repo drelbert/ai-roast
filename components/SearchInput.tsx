@@ -3,12 +3,15 @@
 import { askQuestion } from '@/utils/api'
 import { useState } from 'react'
 
-const SearchInput = () => {
+type SearchInputProps = {
+  onChange: React.ChangeEventHandler<HTMLInputElement>
+}
+const SearchInput = ({ onChange }: SearchInputProps) => {
   const [value, setValue] = useState('')
   const [loading, setLoading] = useState(false)
   const [response, setResponse] = useState()
 
-  const onChange = (e) => {
+  const onRevision = (e) => {
     setValue(e.target.value)
   }
 
@@ -25,26 +28,28 @@ const SearchInput = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="flex items-center justify-between">
+      <form onSubmit={handleSubmit} className="overflow-hidden w-2/5">
         <input
           disabled={loading}
-          onChange={onChange}
+          onChange={onRevision}
           value={value}
           type="text"
-          placeholder="Search for roast results"
-          className="border border-black/20 px-4 py-2 text-lg rounded-lg"
+          placeholder="Search Roasts"
+          className="border border-black/20 px-2 py-2 text-lg text-white rounded-lg bg-slate-500"
         />
         <button
           disabled={loading}
           type="submit"
-          className="bg-blue-300 m-4 px-4 py-2 rounded-lg text-lg"
+          className="bg-slate-500 m-4 px-4 py-2 rounded-lg text-lg text-sky-400"
         >
           Submit
         </button>
       </form>
-      {loading && <div>...loading</div>}
-      {response && <div>{response}</div>}
+      <div className="w-3/5 text-white">
+        {loading && <div>...loading</div>}
+        {response && <div>{response}</div>}
+      </div>
     </div>
   )
 }

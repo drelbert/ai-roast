@@ -5,6 +5,11 @@ export default async function Home() {
   const { userId } = await auth()
 
   let href = userId ? '/roast' : '/new-user'
+  // alt syntax
+  //  let href = "/new-user"
+  //  if (userId) href = '/roast'
+  //  else
+  //  if (adminUserId) href = "/admin"
 
   return (
     <div className="w-screen h-screen bg-black ">
@@ -12,7 +17,7 @@ export default async function Home() {
         <div>
           <h1 className="text-6xl text-white/80 mb-6">Roast with AI</h1>
           <p className="text-xl text-white/60 mb-6">
-            this is the description of the roast app.
+            Add roast data, leverage ai to make sense of the patterns.
           </p>
           <Link href={href}>
             <button
