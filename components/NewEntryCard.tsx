@@ -18,7 +18,7 @@ const NewEntryCard = () => {
   return (
     <div className="cursor-pointer" onClick={handleOnClick}>
       <div>
-        <button className="bg-slate-500 m-4 px-4 py-2 rounded-lg text-lg text-sky-400">
+        <button className="bg-slate-500 m-4 px-4 py-2 rounded-lg text-lg text-white hover:text-sky-400">
           New Roast
         </button>
       </div>

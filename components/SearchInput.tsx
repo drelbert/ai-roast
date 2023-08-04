@@ -36,12 +36,12 @@ const SearchInput = ({ onChange }: SearchInputProps) => {
           value={value}
           type="text"
           placeholder="Search Roasts"
-          className="border border-black/20 px-2 py-2 text-lg text-white rounded-lg bg-slate-500"
+          className=" px-2 py-2 text-lg text-white rounded-lg bg-slate-500 hover:bg-slate-700"
         />
         <button
           disabled={loading}
           type="submit"
-          className="bg-slate-500 m-4 px-4 py-2 rounded-lg text-lg text-sky-400"
+          className="bg-slate-500 m-4 px-4 py-2 rounded-lg text-lg text-white hover:text-sky-400 focus:ring-slate-500"
         >
           Submit
         </button>

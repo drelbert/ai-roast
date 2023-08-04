@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^4.21.1",
+    "@headlessui/react": "^1.7.16",
+    "@heroicons/react": "^2.0.18",
     "@prisma/client": "^4.15.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
@@ -22,6 +24,7 @@
     "cohere-ai": "^5.1.0",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.5",
+    "heroicons": "^2.0.18",
     "jsdom": "^22.1.0",
     "langchain": "^0.0.96",
     "next": "13.4.5",

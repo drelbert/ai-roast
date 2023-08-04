@@ -3,20 +3,13 @@ import { UserButton } from '@clerk/nextjs'
 
 const DashboardLayout = ({ children }) => {
   return (
-    <div className="w-screen h-screen relative bg-slate-800 text-sky-400">
-      <aside className="absolute left-0 top-0 h-full w-[200px]  ">
-        <div className="px-4 my-4">
-          <span className="text-3xl ">Roast Lab</span>
-        </div>
-        <div className="text-white">
-          <Navigation userRole={undefined} />
-        </div>
-      </aside>
-
-      <div className="ml-[200px] h-full w-[calc(100vw-200px)]">
-        <header className="h-[60px]  ">
+    <div className="bg-slate-900 text-white">
+      <div className="h-full w-full">
+        <header className="h-[60px] border-b border-slate-800">
+          <div className="absolute left-4 top-4 text-lg">roastLab</div>
           <nav className="px-4 h-full">
-            <div className="h-full w-full px-2 flex items-center justify-end">
+            <div className="h-full w-full px-2 flex items-center ">
+              <Navigation userRole={undefined} />
               <UserButton afterSignOutUrl="/" />
             </div>
           </nav>

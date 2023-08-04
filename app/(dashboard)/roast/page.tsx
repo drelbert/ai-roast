@@ -28,14 +28,14 @@ const RoastPage = async () => {
   console.log(`entries are`, entries)
 
   return (
-    <div className="h-full  text-sky-400">
+    <div>
       <div>
-        <h2 className="text-3xl">Roasts</h2>
-        <div className="p-4 bg-slate-400/10 h-full rounded-xl m-4">
+        <h2 className="text-3xl py-2 px-4">Roasts</h2>
+        <div className="p-4 bg-slate-600/10 h-full rounded-xl m-4">
           <SearchInput />
         </div>
 
-        <div className="gap-2 p-8 bg-slate-400/10 h-full rounded-xl m-4">
+        <div className="gap-2 p-4 bg-slate-600/10 h-full rounded-xl m-4">
           <div>
             <NewEntryCard />
           </div>
