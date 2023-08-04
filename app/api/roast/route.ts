@@ -9,8 +9,7 @@ export const POST = async (request: NextRequest) => {
   const entry = await prisma.roastEntry.create({
     data: {
       userId: user.id,
-      content:
-        'Enter roast details such as bean name, roast time, roast profile and any other relevant data. ',
+      content: '',
       analysis: {},
     },
   })

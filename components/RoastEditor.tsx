@@ -58,37 +58,44 @@ const RoastEditor = ({ entry }) => {
   })
 
   return (
-    <div className="w-full h-96 grid md:grid-cols-3">
-      <div className="col-span-2 m-2">
-        {isLoading && <div>...Loading</div>}
-        <textarea
-          className="w-full h-full p-8 text-lg text-white rounded-md bg-slate-700"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          name="roast"
-        />
-      </div>
-
-      <div className="md:cols-span-2">
-        <div
-          className="px-6 py-8 rounded-md m-2"
-          style={{ backgroundColor: color }}
-        >
-          <h2 className="text-2xl text-white">Sentiment</h2>
+    <div>
+      <div className=""></div>
+      <div className="w-full h-96 grid md:grid-cols-3">
+        <div className="col-span-2 m-2 p-4 bg-slate-600">
+          <p>
+            Enter roast details such as bean name, roast time, roast profile and
+            any other relevant data.
+          </p>
+          {isLoading && <div>...Loading</div>}
+          <textarea
+            className="w-full h-64 p-8 text-lg text-white rounded-md bg-slate-700"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            name="roast"
+          />
         </div>
 
-        <div className="rounded-md m-2 text-white bg-slate-700">
-          <ul>
-            {roastData.map((e) => (
-              <li
-                key={e.name}
-                className="px-2 py-4 flex items-center justify-between border-b  border-black/10"
-              >
-                <span className="text-lg font-semibold">{e.name}</span>
-                <span>{e.value}</span>
-              </li>
-            ))}
-          </ul>
+        <div className="md:cols-span-2">
+          <div
+            className="px-6 py-8 rounded-md m-2"
+            style={{ backgroundColor: color }}
+          >
+            <h2 className="text-2xl text-white">Sentiment</h2>
+          </div>
+
+          <div className="rounded-md m-2 text-white bg-slate-700">
+            <ul>
+              {roastData.map((e) => (
+                <li
+                  key={e.name}
+                  className="px-2 py-4 flex items-center justify-between border-b  border-black/10"
+                >
+                  <span className="text-lg font-semibold">{e.name}</span>
+                  <span>{e.value}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
