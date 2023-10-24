@@ -4,7 +4,7 @@ import { PromptTemplate } from 'langchain/prompts'
 import { StructuredOutputParser } from 'langchain/output_parsers'
 import { Document } from 'langchain/document'
 import { loadQARefineChain } from 'langchain/chains'
-import { OpenAIEmbeddings } from 'langchain/embeddings'
+import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
 import { MemoryVectorStore } from 'langchain/vectorstores/memory'
 import z from 'zod'
 
@@ -83,6 +83,7 @@ export const analyze = async (content) => {
   // console.log(result)
 }
 
+// for the SearchInput component
 // the search section = question and answer
 // how to feed llm to answer the search input question?
 // given token limitations
@@ -91,7 +92,11 @@ export const qa = async (question, entries) => {
   const docs = entries.map((entry) => {
     return new Document({
       pageContent: entry.content,
-      metadata: { id: entry.id, createdAt: entry.createdAt },
+      metadata: {
+        id: entry.id,
+        createdAt: entry.createdAt,
+        updatedAt: entry.updatedAt,
+      },
     })
   })
 

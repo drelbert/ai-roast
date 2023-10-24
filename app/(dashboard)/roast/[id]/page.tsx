@@ -1,5 +1,4 @@
 import RoastEditor from '@/components/RoastEditor'
-import { analyze } from '@/utils/ai'
 import { getUserByClerkID } from '@/utils/auth'
 import { prisma } from '@/utils/db'
 

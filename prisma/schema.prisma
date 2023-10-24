@@ -20,6 +20,11 @@ model User {
 
   // using the enum 
   role Role @default(USER)
+
+  groupId Int?
+  group   Group? @relation(fields: [groupId], references: [id])
+
+  @@index([groupId])
 }
 
 model RoastEntry {
@@ -60,6 +65,12 @@ model Analysis {
 
   @@unique([entryId])
   @@index([userId])
+}
+
+model Group {
+  id      Int    @id @default(autoincrement())
+  title   String
+  members User[]
 }
 
 enum Role {

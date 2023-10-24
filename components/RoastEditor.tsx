@@ -66,7 +66,7 @@ const RoastEditor = ({ entry }) => {
             Enter roast details such as bean name, roast time, roast profile and
             any other relevant data.
           </p>
-          {isLoading && <div>...Loading</div>}
+          {isLoading && <div>...Saving</div>}
           <textarea
             className="w-full h-64 p-8 text-lg text-white rounded-md bg-slate-700"
             value={value}

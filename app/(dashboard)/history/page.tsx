@@ -21,7 +21,7 @@ const getData = async () => {
 const History = async () => {
   const { avg, analysis } = await getData()
 
-  console.log(analysis)
+  //console.log(analysis)
 
   return (
     <div className="w-full h-full">

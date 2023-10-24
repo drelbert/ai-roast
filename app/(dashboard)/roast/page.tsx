@@ -25,14 +25,16 @@ const getEntries = async () => {
 
 const RoastPage = async () => {
   const entries = await getEntries()
-  console.log(`entries are`, entries)
+  //console.log(`entries are`, entries)
 
   return (
     <div>
       <div>
         <h2 className="text-3xl py-2 px-4">Roasts</h2>
         <div className="p-4 bg-slate-600/10 h-full rounded-xl m-4">
-          <SearchInput />
+          <div>
+            <SearchInput />
+          </div>
         </div>
 
         <div className="gap-2 p-4 bg-slate-600/10 h-full rounded-xl m-4">

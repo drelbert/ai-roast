@@ -27,7 +27,7 @@ export const getAdminUserByClerkID = async () => {
 
     return admin.role as 'ADMIN'
   } catch (error) {
-    console.log('Error fetching user role:', error)
+    // console.log('Error fetching user role:', error)
     throw error
   }
 }

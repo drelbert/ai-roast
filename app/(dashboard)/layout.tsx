@@ -3,7 +3,7 @@ import { UserButton } from '@clerk/nextjs'
 
 const DashboardLayout = ({ children }) => {
   return (
-    <div className="bg-slate-900 text-white">
+    <div className="text-white">
       <div className="h-full w-full">
         <header className="h-[60px] border-b border-slate-800">
           <div className="absolute left-4 top-4 text-lg">roastLab</div>

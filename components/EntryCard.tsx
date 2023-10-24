@@ -4,7 +4,10 @@
 const EntryCard = ({ entry }) => {
   const date = new Date(entry.createdAt).toDateString()
   return (
-    <ul role="list" className="divide-y divide-gray-100">
+    <ul
+      role="list"
+      className="divide-y divide-gray-100 border-b border-slate-700 "
+    >
       <li className="flex justify-between gap-x-6 py-5  ">
         <div className="flex gap-x-4 ">
           <div className="min-w-0 flex-auto">
